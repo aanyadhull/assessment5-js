@@ -57,38 +57,31 @@
             Note: You have to complete Count Head function. No need to take any input.
             </b>
         <pre>
-            
-           
-var Count_Occ = (s) => 
+            var Count_Occ = (s) => 
 {
-  var B=[];
-  [...s].filter(function (ch){
-    var count=0;
-    count=(s.match(new RegExp(ch,"g"))||[]).length;
-    if(count>1)
-    B[ch]=count;
-  });
-  let newObj=[];
-  Object.keys(B).sort()
-  .forEach((key)=> {
-    newObj[key] =B[key];
-    
-  });
+  let count=1;
+    let str='';
+    let op="";
+    for(let i=0;i<s.length;i++){
+      for(j=i+1;j<s.length;j++){
+        if(s[i]==s[j]){
+          count++;
+        }
+      }
+      if(count>1){
+        str=s[i];
+        op=op+" "+s[i]+count;
+        s=s.replace(str,' ');
+        s=s.split(str).join('');
+      }
+      count=1;
+    }
+    return op.split(' ').sort().join('');
 
-  B=newObj;
-  var op ="";
-  for(var k in B){
-    if(B.hasOwnProperty(k)) {
-      op=op+""+k+""+B[k];
-  }
-  }
-  B.forEach((item,index)=> {
-    op=op+item+index;
-  });
-
-  return op;
    
 };
+           
+
      
     
                 
